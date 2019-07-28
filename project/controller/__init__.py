@@ -1,3 +1,3 @@
 # user type
-# from project.controller.foldername.filename import *
+from project.controller.branch.auth import *
 
