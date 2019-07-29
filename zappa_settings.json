@@ -1,0 +1,10 @@
+{
+    "prod": {
+        "app_function": "run.app",
+        "aws_region": "ap-south-1",
+        "profile_name": "default",
+        "project_name": "valuetrack",
+        "runtime": "python3.7",
+        "s3_bucket": "zappa-tnhiovai5"
+    }
+}
