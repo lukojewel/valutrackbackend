@@ -20,6 +20,7 @@ app = falcon.API(middleware=[cors.middleware])
 app.add_route("/branch/auth/sign-up", BranchSignup())
 app.add_route("/branch/auth/login", BranchLogin())
 app.add_route("/branch/customer/add", AddCustomer())
+app.add_route("/branch/customer/list", CustomerListing())
 
 # Branch
 app.add_route("/head/auth/sign-up", HeadSignup())

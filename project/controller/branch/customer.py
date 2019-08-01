@@ -77,3 +77,39 @@ class AddCustomer:
             res.status = falcon.HTTP_200
             res.body = json.dumps({'status': status, 'message': message })
 
+class CustomerListing:
+    def on_get(self,req,res):
+        try:
+            logger.info("[CustomerListing API]")
+
+            db_customers = session.query(Customer).all()
+            data = []
+            for db_customer in db_customers:
+                temp_data = {}
+                temp_data['id'] = db_customer.id
+                temp_data['name'] = db_customer.name
+                temp_data['email'] = db_customer.email
+                temp_data['branch'] = db_customer.branch
+                temp_data['contact'] = db_customer.contact
+                temp_data['dob'] = str(db_customer.dob)
+                try:
+                    temp_data['due'] = float(db_customer.due)
+                except:
+                    temp_data['due'] = 0
+                data.append(temp_data)
+            
+
+            status = True
+            message = 'success'
+            logger.info('[AddCustomer] success')
+            res.status = falcon.HTTP_201
+            res.body = json.dumps({ 'status' : status, 'message' : message, 'data': data })
+            return
+
+        except Exception as e:
+            status = False
+            message = "[AddCustomer] Something went wrong : " +  str(e)
+            logger.error(message)
+            res.status = falcon.HTTP_200
+            res.body = json.dumps({'status': status, 'message': message })
+
